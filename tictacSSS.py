@@ -117,6 +117,25 @@ def sortValue(x):
 
 # Get the best position
 def getWinningPosition(board, playerID):
+	# Check if we win in one step
+	for position in positions:
+		tempBoard = copy.deepcopy(board)
+		# Place a peg on the board
+		tempBoard[position[0]][position[1]] = playerPeg[playerID]
+		if didPlayerWin(tempBoard, playerID):
+			if board[position[0]][position[1]]!=playerPeg[playerID]:
+				print('One Step Winning position:',position)
+				return position
+
+	# Check if opponent is winning
+	for position in positions:
+		tempBoard = copy.deepcopy(board)
+		# Place a peg on the board
+		tempBoard[position[0]][position[1]] = playerPeg[1-playerID]
+		if didPlayerWin(tempBoard, 1-playerID):
+			if board[position[0]][position[1]]!=playerPeg[1-playerID]:
+				print('Opponent Winning position:',position)
+				return position
 
 	# Calculate next best position based on recursion
 	winningPositions=[]
@@ -132,15 +151,8 @@ def getWinningPosition(board, playerID):
 		steps = positionWins(tempBoard, playerID, tempPositions)
 		if steps:
 			winningPositions.append((position, steps))
-		# Check if opponent is winning
-	for position in positions:
-		tempBoard = copy.deepcopy(board)
-		# Place a peg on the board
-		tempBoard[position[0]][position[1]] = playerPeg[1-playerID]
-		if didPlayerWin(tempBoard, 1-playerID):
-			if board[position[0]][position[1]]!=playerPeg[1-playerID]:
-				print('Opponent Winning position:',position)
-				return position
+
+	
 	winningPositions.sort(key=sortValue)
 
 	smallestValue = winningPositions[0][1]
