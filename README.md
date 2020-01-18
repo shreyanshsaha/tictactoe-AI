@@ -13,6 +13,8 @@ This repository has 3 codes which plays the tic-tac-toe in different ways. Lets 
 ## Random playing
 File: `tictactoe-AI/tictacRandom.py`
 
+![random](https://media.giphy.com/media/VEcBt3IvzfVjFLQPIN/giphy.gif)
+
 This is as simple as the game can be. The computers just pic a spot randomly and if its not empty they place their peg on the board.
 
 ```python
@@ -27,6 +29,9 @@ As we can see, if we have `positions` available, we randomly select one and plac
 
 ## State Space Search - One step
 File: `tictactoe-AI/tictacOneStep.py`
+
+![onestep](https://media.giphy.com/media/ihAdFVTDkQ14WpVR9k/giphy.gif)
+
 ``` python
 def getWinningState(board, playerID):
 	# Place playerPeg in every position and 
@@ -65,6 +70,9 @@ We can improve this code by checking if the opponent wins in 1 step and block th
 
 ## Complete State Space Seach
 File: `tictactoe-AI/tictacSSS.py`
+
+![onestep](https://media.giphy.com/media/KG0E1KCQ1kYUVsVFd8/giphy.gif)
+
 This is the most complex algorithm which searches all possible states to all levels to get the winning state. We then compare the length of the steps taken to reach the winning state and chose the path with least number of steps.
 At each step we also check if we win in one-step or opponent wins in one-step. In such case we directly place the peg on the winning position or block the opponent from winning.
 
